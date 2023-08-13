@@ -1,9 +1,11 @@
 <?php
 
+error_reporting(E_ALL); // Enable error reporting for debugging
+
 // Set necessary headers for CORS and response content type
-header('Access-Control-Allow-Origin');
+header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
-header('Access-Control-Allow-Method: GET');
+header('Access-Control-Allow-Method: PUT');
 header('Access-Control-Allow-Headers: Content-type, Access-Control-Allow-Headers, Authorization, X-request-With');
 
 // Include the required functions
@@ -12,18 +14,18 @@ require_once "function.php";
 // Get the HTTP request method
 $requestMethod = $_SERVER["REQUEST_METHOD"];
 
-// Check if the request method
-if ($requestMethod == "GET") {
+// Check if the request method 
+if ($requestMethod == "PUT") {
 
-    if (isset($_GET['id'])) {
-        // Fetch customer data by ID and echo the result
-        $customer = getCustomer($conn, $_GET);
-        echo $customer;
+    $inputData = json_decode(file_get_contents("php://input"), true);
+    if (empty($inputData)) {
+        $updateCustomer = updateCustomer($conn, $_POST, $_GET);
+
     } else {
-        // Fetch list of all customers and echo the result
-        $customerList = getCustomerList($conn);
-        echo $customerList;
+        $updateCustomer = updateCustomer($conn, $inputData, $_GET);
     }
+
+    echo $updateCustomer;
 
 } else {
     // return a 405 Method Not Allowed response when indeed

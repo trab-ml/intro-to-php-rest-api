@@ -9,7 +9,7 @@ header('Access-Control-Allow-Method: PUT');
 header('Access-Control-Allow-Headers: Content-type, Access-Control-Allow-Headers, Authorization, X-request-With');
 
 // Include the required functions
-require_once "function.php";
+require_once "utils.php";
 
 // Get the HTTP request method
 $requestMethod = $_SERVER["REQUEST_METHOD"];

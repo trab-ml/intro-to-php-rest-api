@@ -7,7 +7,7 @@ header('Access-Control-Allow-Method: POST');
 header('Access-Control-Allow-Headers: Content-type, Access-Control-Allow-Headers, Authorization, X-request-With');
 
 // Include the required functions
-require_once "function.php";
+require_once "utils.php";
 
 // Get the HTTP request method
 $requestMethod = $_SERVER["REQUEST_METHOD"];
@@ -30,5 +30,3 @@ if ($requestMethod == "POST") {
    // return a 405 Method Not Allowed response when indeed
    createResponse(405, $requestMethod . ' Method Not Allowed', "HTTP/1.0 405 Method Not Allowed");
 }
-
-?>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once '../config.php';
 
@@ -185,5 +185,3 @@ function deleteCustomer($conn, $customerParams)
         }
     }
 }
-
-?>
